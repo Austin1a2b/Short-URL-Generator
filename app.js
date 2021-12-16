@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+//轉換 短網址
 app.post('/show', (req, res) => {
   const inputURL = req.body.URL
   let shortURL = ''
@@ -29,8 +30,8 @@ app.post('/show', (req, res) => {
         return record.originURL === inputURL
       })
       // 後續用來判斷  是否有重複 , 
-      const length = result || 'noRepeat'
-      if (length !== 'noRepeat') {
+      const judgment = result || 'noRepeat'
+      if (judgment !== 'noRepeat') {
         shortURL = result.shortURL
       } else {
         //2. 無相同URL 尚未製作 亂碼器
@@ -41,6 +42,24 @@ app.post('/show', (req, res) => {
     })
 })
 
+//輸入短網址 => 到其他網站
+app.get('/:random', (req, res) => {
+  const random = req.params.random
+  const inputshortURL = `http://localhost:3000/${random}`
+  Record.find()
+    .lean()
+    .then(dataArry => {
+      const result = dataArry.find(record => {
+        return record.shortURL === inputshortURL
+      })
+      const judgment = result || 'noData'
+      if (judgment !== 'noData') {
+        res.redirect(result.originURL)
+      } else {
+        //後續再製作一個  短網址有誤的頁面?
+      }
+    })
+})
 
 
 db.on('error', () => {

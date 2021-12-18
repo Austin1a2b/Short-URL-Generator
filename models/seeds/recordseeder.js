@@ -1,12 +1,5 @@
-const mongoose = require('mongoose')
 const Record = require('../record')
-mongoose.connect('mongodb://localhost/record')
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
+const db = require('../../config/mongoose')
 
 db.once('open', () => {
   Record.create({

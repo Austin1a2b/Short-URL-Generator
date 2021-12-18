@@ -58,7 +58,7 @@ app.get('/:random', (req, res) => {
       if (judgment !== 'noData') {
         res.redirect(result.originURL)
       } else {
-        //後續再製作一個  短網址有誤的頁面?
+        res.render('show', { Nodata: judgment })
       }
     })
 })

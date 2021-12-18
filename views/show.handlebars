@@ -1,24 +1,35 @@
 <div class="container">
   <div class="row justify-content-md-center">
-    <div class="col col-lg-2">
-    </div>
+    <div class="col col-lg-2"> </div>
     <div class="col-md-auto">
-      <div style="border-color: black;">
+      {{#if shortURL}}
+      <div>
         <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
-          alt="這網站功能是製作短網址">
+          alt="這網站功能是製作短網址" class="img-fluid" width="300" height="300">
         <div>
-          Success! Please use this link :
+          <h3> Success! Please use this link :</h3>
         </div>
         <div>
-          放處理好的網址: {{shortURL}}
+          <h4> <a href="{{shortURL}}"> {{shortURL}}</a></h4>
         </div>
-        <div>
-          <a href="/"> 製作其他短網址</a>
+        <div class="mx-auto">
+          <p class="mx-auto">
+            <a href="/" class="btn btn-primary btn-lg active">
+              製作其他短網址
+            </a>
+          </p>
         </div>
       </div>
-    </div>
-    <div class="col col-lg-2">
-    </div>
-  </div>
+      {{/if}}
 
+      {{#if Nodata}}
+      <h4>您輸入的短網址 有錯誤</h4>
+      <a href="/" class="btn btn-primary btn-lg active">
+        製作其他短網址
+      </a>
+      {{/if}}
+
+    </div>
+    <div class="col col-lg-2"> </div>
+  </div>
 </div>
